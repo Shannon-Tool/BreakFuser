@@ -1,0 +1,3 @@
+Answer the following self-contained question directly and factually. Provide the most specific supported answer without adding unrelated background.
+
+$atom

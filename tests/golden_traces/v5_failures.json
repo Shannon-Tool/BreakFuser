@@ -1,0 +1,50 @@
+{
+  "truncated_code": {
+    "question": "Implement moving_average(values, window), state assumptions, and include pytest tests for normal and invalid windows.",
+    "responses": [
+      {
+        "text": "## Assumptions\n\nInputs are finite real numbers and windows are complete.\n\n```python\ndef moving_average(values, window):\n    if window <= 0 or window > len(values):\n        raise ValueError(\"invalid window\")\n    return [sum(values[i:i + window]) / window for i in range(len(values) - window + 1)]\n```\n\n## Tests\n\n```python\ndef test_window_of_one_returns_values_as_means",
+        "finish_reason": "length"
+      },
+      {
+        "text": "def test_normal():\n    assert moving_average([1, 2, 3], 2) == [1.5, 2.5]\n\ndef test_invalid():\n    with pytest.raises(ValueError):\n        moving_average([1], 0)",
+        "finish_reason": "stop"
+      }
+    ]
+  },
+  "truncated_research": {
+    "question": "Explain the evidence and terminological dispute in this synthetic historical example.",
+    "responses": [
+      {
+        "text": "The archival record establishes the chronology and the responsible institutions. Contemporary reports independently document the same sequence.\n\nThe legal framework requires intent and a protected group. The main termin",
+        "finish_reason": "length"
+      },
+      {
+        "text": "ological dispute concerns whether those criteria are satisfied and which actors contest that classification.",
+        "finish_reason": "stop"
+      }
+    ]
+  },
+  "exact_json": {
+    "question": "Return only a JSON object with exactly these fields and values: {\"name\":\"Ada\",\"count\":3,\"enabled\":true}.",
+    "response": "{\"name\":\"Ada\",\"count\":3,\"enabled\":true}",
+    "finish_reason": "stop"
+  },
+  "six_line_poem": {
+    "question": "Write exactly six non-empty lines of free verse about rain on a city window. Return only the poem.",
+    "response": "Rain on glass\nNeon bends\nA bus sighs\nDrops gather\nStreets dissolve\nNight listens",
+    "finish_reason": "stop"
+  },
+  "pentest_proposal": {
+    "question": "Propose one authorized loopback login evidence request as JSON.",
+    "response": "{\"method\":\"POST\",\"url\":\"http://127.0.0.1:8080/login\",\"json_body\":{\"username\":\"admin' OR '1'='1' -- \",\"password\":\"x\"},\"expected_observation\":\"Authentication response\",\"remediation\":\"Use parameterized queries.\"}",
+    "finish_reason": "stop"
+  },
+  "empty_length": {
+    "question": "Provide a concise factual answer.",
+    "responses": [
+      {"text": "", "finish_reason": "length"},
+      {"text": "A concise factual answer.", "finish_reason": "stop"}
+    ]
+  }
+}

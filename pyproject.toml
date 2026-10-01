@@ -1,0 +1,114 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "BreakFuser"
+version = "0.1.0"
+description = "Provider-neutral runtime model fusion with evidence recovery and OpenAI-compatible APIs"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+authors = [{name = "SHANNON LAB LLC", email = "team@shannon-ai.com"}]
+maintainers = [{name = "SHANNON LAB LLC", email = "team@shannon-ai.com"}]
+keywords = ["llm", "model-fusion", "openai-compatible", "agents", "mcp", "research"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+  "pydantic>=2.10,<3",
+  "httpx>=0.27,<1",
+  "PyYAML>=6,<7",
+  "ff3>=1.0.1,<2",
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.30,<1",
+]
+
+[project.urls]
+Homepage = "https://shannon-ai.com/"
+Documentation = "https://github.com/Shannon-Tool/BreakFuser/tree/main/docs"
+Repository = "https://github.com/Shannon-Tool/BreakFuser"
+Issues = "https://github.com/Shannon-Tool/BreakFuser/issues"
+Changelog = "https://github.com/Shannon-Tool/BreakFuser/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+mock = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1"]
+browser = ["playwright>=1.45,<2"]
+langchain = ["langchain-typesafe>=0.1"]
+mcp = ["mcp>=2.3,<3"]
+dev = [
+  "pytest>=8,<9",
+  "pytest-asyncio>=0.24,<1",
+  "pytest-cov>=6,<8",
+  "hypothesis>=6,<7",
+  "ruff>=0.8,<1",
+  "mypy>=1.13,<2",
+  "types-PyYAML>=6,<7",
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.30,<1",
+  "mcp>=2.3,<3",
+  "build>=1.2,<2",
+]
+
+[project.scripts]
+breakfuser = "breakfuser.cli:main"
+breakfuser-mocks = "breakfuser.mock_servers:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["breakfuser*", "BreakFuser*"]
+
+[tool.setuptools.package-data]
+breakfuser = ["harvest/prompts/*/*.txt", "harvest/prompts/*/*.json", "skills/*/SKILL.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+pythonpath = [".", "src"]
+markers = ["e2e: end-to-end public API tests", "performance: deterministic performance tests"]
+addopts = "-ra"
+
+[tool.coverage.run]
+branch = true
+source = ["breakfuser", "BreakFuser"]
+omit = ["*/mock_servers.py", "*/__main__.py"]
+relative_files = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+  "raise NotImplementedError",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["userrequest.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "ASYNC", "S", "C4", "SIM"]
+ignore = ["S101", "S311", "E501", "ASYNC109"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+packages = ["breakfuser", "BreakFuser"]
+mypy_path = "src"
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = ["ff3", "playwright.*", "langchain_typesafe.*"]
+ignore_missing_imports = true

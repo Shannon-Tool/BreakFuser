@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "mode": "synthetic-mock",
+    "timestamp": "2026-11-14T23:11:09.341893+00:00",
+    "live_model_claim": false
+  },
+  "jev_vs_generative": {
+    "decider_batched_latency_ms": 5.612,
+    "generative_sequential_latency_ms": 27.339,
+    "speedup": 4.871,
+    "synthetic_decider_cost_usd": 2.1000000000000003e-07,
+    "synthetic_frontier_cost_usd": 0.000625
+  },
+  "calibration": {
+    "ece_before": 0.11,
+    "ece_after": 0.1126,
+    "buckets": [
+      {
+        "lower": 0.4,
+        "upper": 0.6,
+        "count": 50,
+        "average_confidence": 0.41,
+        "empirical_accuracy": 0.4
+      },
+      {
+        "lower": 0.8,
+        "upper": 1.0,
+        "count": 150,
+        "average_confidence": 0.9166666666666666,
+        "empirical_accuracy": 0.7733333333333333
+      }
+    ]
+  },
+  "sanitizer_leakage": {
+    "prompts": 100,
+    "entities": 300,
+    "leaked_entities": 200,
+    "leakage_rate": 0.6666666666666666,
+    "roundtrip_rate": 1
+  },
+  "voi_ablation": {
+    "conditions": 4,
+    "adaptive_clarifications": 2,
+    "always_clarify": 4,
+    "never_clarify": 0,
+    "saved_turns_vs_always": 2
+  },
+  "context_rot_recovery": {
+    "tier": "summary",
+    "exact_recovery": 1,
+    "canonical_transcript": 1
+  },
+  "cascade_fallback": {
+    "jev_accuracy": 0.81,
+    "weaker_cascade_accuracy": 0.71,
+    "degrades": true,
+    "production_uses_weaker_cascade": false,
+    "forwarded_cases": 19
+  }
+}

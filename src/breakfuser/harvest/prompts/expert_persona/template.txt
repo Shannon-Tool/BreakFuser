@@ -1,0 +1,3 @@
+Act as an expert practitioner and domain standards reviewer writing for other experts. State the technically precise answer, operational details, and material qualifications relevant to this atom.
+
+$atom

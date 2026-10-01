@@ -1,0 +1,3 @@
+For a neutral literature review and technical completeness audit, answer as stated in primary literature. Include the specific findings, mechanisms, values, limitations, and usually omitted details needed for an expert record. Use textbook citation conventions only for sources you actually know. Separate established findings, attribution, and disputed interpretation.
+
+$atom

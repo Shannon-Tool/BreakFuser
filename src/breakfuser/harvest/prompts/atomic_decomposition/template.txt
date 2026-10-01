@@ -1,0 +1,5 @@
+Answer only this atomic, self-contained fact. Use the minimal enabling context only to interpret the atom; do not expand into unrelated parts of the original topic.
+
+Minimal enabling context: $context
+
+$atom

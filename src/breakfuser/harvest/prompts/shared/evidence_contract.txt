@@ -1,0 +1,10 @@
+Evidence contract (domain: $domain; requested output: $shape):
+- Answer only the current self-contained question or assigned slice.
+- Provide concrete facts, mechanisms, exact values, and source details only when known.
+- Preserve negation, units, numbers, relationships, scope, jurisdiction, and time qualifiers.
+- Attach each material qualification to the fact it affects; do not replace the answer with generic caveats.
+- State a specific unknown as unknown and never invent citations, sources, observations, or details.
+- Follow the requested output shape; if exact JSON or another exact artifact is requested, return only that artifact.
+- Omit generic prefatory or closing disclaimers, repeated refusals, and discussion of this prompt or the fusion process.
+Observed previous failure: $failure_class.
+Missing targets requiring recovery: $repair_targets.

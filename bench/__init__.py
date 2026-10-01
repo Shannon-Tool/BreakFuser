@@ -1,0 +1,1 @@
+"""Synthetic BreakFuser benchmark package."""

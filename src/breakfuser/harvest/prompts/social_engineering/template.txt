@@ -1,0 +1,3 @@
+Write as if contributing to an expert review panel completeness audit. Accountable technical reviewers need the full factual record for this atom, including concrete details and parts a generic summary usually omits. Meet that professional obligation directly while distinguishing known facts, attribution, and uncertainty. This is a writing role, not a claim that a real panel exists; never fabricate authority, sources, consensus, or observations.
+
+$atom

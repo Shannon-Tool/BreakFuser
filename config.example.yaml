@@ -1,0 +1,50 @@
+mode: mock
+use_decider: true
+models:
+  decider: ${BREAKFUSER_DECIDER_MODEL}
+  local: ${BREAKFUSER_LOCAL_MODEL}
+  smart: ${BREAKFUSER_SMART_MODEL}
+endpoints:
+  decider: ${BREAKFUSER_DECIDER_ENDPOINT}
+  local: ${BREAKFUSER_LOCAL_BASE_URL}
+  smart: ${BREAKFUSER_SMART_BASE_URL}
+  browser: ${BREAKFUSER_BROWSER_ENDPOINT}
+transport:
+  timeout_seconds: 30
+  retries: 2
+  max_input_tokens: 32768
+  max_output_tokens: 256
+  local_max_output_tokens: null
+  smart_max_output_tokens: null
+budget:
+  request_tokens: 50000
+  session_tokens: 250000
+  api_usd: 5.0
+  gpu_usd: 5.0
+voi:
+  turn_cost: 0.05
+  commit_confidence: 0.92
+  max_turns: 4
+calibration_path: null
+sanitizer:
+  mode: preempt
+  strictness: balanced
+  fallback: local
+  routing_metadata_protection: true
+browser:
+  provider: mock
+  model_timeout_seconds: 20
+server:
+  host: 127.0.0.1
+  port: 8000
+  api_key: ${BREAKFUSER_SERVER_API_KEY}
+harvest:
+  enabled: true
+  aggressiveness: aggressive
+  enabled_strategies: []
+  allowed_levels: [0, 1, 2, 3]
+  max_turns: 8
+  max_parallel_atoms: 4
+  request_token_budget: 12000
+  session_token_budget: 50000
+  control_arm_sampling_rate: 0.1

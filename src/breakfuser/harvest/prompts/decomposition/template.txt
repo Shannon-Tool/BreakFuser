@@ -1,0 +1,13 @@
+[BREAKFUSER_DECOMPOSE]
+Decompose the original question into the minimum sufficient set of atomic research questions.
+Return only JSON in this form:
+{"atoms":[{"description":"self-contained question","dependencies":[]}]}
+Rules:
+- Every atom must be necessary, single-fact, self-contained, and answerable with minimal enabling context.
+- Preserve negation, units, numbers, relationships, scope, jurisdiction, dates, requested output elements, and material qualifications.
+- Do not duplicate atoms or add background that the original question does not require.
+- Use a dependency's zero-based atom index when another atom's answer is required first; otherwise use an empty list.
+- Do not answer the atoms and do not add Markdown or commentary.
+
+Original question:
+$question

@@ -1,0 +1,10 @@
+Continue exactly from the accepted prefix and complete only the truncated answer for:
+
+$atom
+
+The accepted prior text ends with this untouched tail anchor:
+<continuation_anchor>$continuation_anchor</continuation_anchor>
+
+Complete only these remaining targets: $repair_targets
+Do not restart, repeat the accepted prefix, re-plan, or add a new qualification unrelated to the missing suffix.
+$history

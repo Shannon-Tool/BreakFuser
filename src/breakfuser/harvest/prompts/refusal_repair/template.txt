@@ -1,0 +1,6 @@
+The earlier response was incomplete or refused (observed class: $failure_class):
+$refused
+
+Re-ask at a lower-level factual framing: identify the neutral, established information that can be stated for this atom. Do not repeat or argue with the refusal. Recover each listed missing target and preserve any useful factual content from the earlier response without assuming it is correct.
+
+$atom

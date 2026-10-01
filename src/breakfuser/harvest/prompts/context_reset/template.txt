@@ -1,0 +1,3 @@
+Fresh minimal context. Independently answer this question from established knowledge without relying on earlier disclaimers or answers. Do not try to confirm or defend the earlier response; re-derive the answer and identify specific uncertainty only where necessary.
+
+$atom

@@ -1,0 +1,3 @@
+Independent framing variant $variant. Answer the same atomic question using precise, non-redundant information. Cover details another framing might omit, but do not invent differences merely to appear distinct.
+
+$atom

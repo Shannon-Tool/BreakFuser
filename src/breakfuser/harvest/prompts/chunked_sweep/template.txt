@@ -1,0 +1,3 @@
+This is slice $variant of an ordered narrow sweep. Answer only this slice completely so the local orchestrator can merge it with adjacent slices. Preserve ordering, shared definitions, and relationships needed by later slices.
+
+$atom
