@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="760" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc">
+  <title id="title">BreakFuser architecture</title>
+  <desc id="desc">An OpenAI-compatible client sends original context to the BreakFuser response model. Parallel knowledge, retrieval, and local draft inputs return evidence. An evidence recovery loop and verification with provenance lead to the final response.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1440" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111A35"/>
+      <stop offset="0.55" stop-color="#0B1020"/>
+      <stop offset="1" stop-color="#0D152A"/>
+    </linearGradient>
+    <linearGradient id="response-card" x1="390" y1="225" x2="710" y2="415" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#202A55"/>
+      <stop offset="1" stop-color="#151E3B"/>
+    </linearGradient>
+    <linearGradient id="final-card" x1="1190" y1="285" x2="1375" y2="410" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#173D42"/>
+      <stop offset="1" stop-color="#122A35"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#020617" flood-opacity="0.28"/>
+    </filter>
+    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M1 1L9 5L1 9Z" fill="#22D3EE"/>
+    </marker>
+    <marker id="arrow-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M1 1L9 5L1 9Z" fill="#7183A4"/>
+    </marker>
+    <marker id="arrow-mint" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M1 1L9 5L1 9Z" fill="#34D399"/>
+    </marker>
+  </defs>
+  <rect width="1440" height="760" fill="url(#bg)"/>
+  <circle cx="1320" cy="60" r="260" fill="#6366F1" opacity="0.045"/>
+  <circle cx="90" cy="740" r="260" fill="#22D3EE" opacity="0.035"/>
+
+  <text x="64" y="72" fill="#F8FAFC" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="34" font-weight="700">BreakFuser request flow</text>
+  <text x="64" y="105" fill="#91A2BF" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="18">Original context stays with response synthesis; specialists supply evidence.</text>
+
+  <rect x="340" y="145" width="800" height="500" rx="28" fill="#0E1730" fill-opacity="0.56" stroke="#3C4A6B" stroke-width="1.5" stroke-dasharray="7 8"/>
+  <rect x="366" y="132" width="154" height="28" rx="14" fill="#1C2648"/>
+  <text x="443" y="152" text-anchor="middle" fill="#B8C5FF" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="700" letter-spacing="2">BREAKFUSER</text>
+
+  <g filter="url(#shadow)">
+    <rect x="64" y="245" width="220" height="160" rx="22" fill="#141E38" stroke="#354463"/>
+    <rect x="390" y="225" width="320" height="190" rx="24" fill="url(#response-card)" stroke="#6366F1" stroke-width="1.5"/>
+    <rect x="800" y="210" width="260" height="82" rx="18" fill="#131E38" stroke="#334563"/>
+    <rect x="800" y="320" width="260" height="82" rx="18" fill="#131E38" stroke="#334563"/>
+    <rect x="800" y="430" width="260" height="100" rx="18" fill="#131E38" stroke="#334563"/>
+    <rect x="390" y="485" width="320" height="100" rx="20" fill="#122A35" stroke="#2A7B70"/>
+    <rect x="1190" y="285" width="185" height="125" rx="22" fill="url(#final-card)" stroke="#34D399" stroke-width="1.5"/>
+  </g>
+
+  <path d="M284 325H390" fill="none" stroke="#22D3EE" stroke-width="3" marker-end="url(#arrow-cyan)"/>
+  <text x="337" y="307" text-anchor="middle" fill="#8EDFEA" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600">REQUEST</text>
+
+  <text x="930" y="188" text-anchor="middle" fill="#8295B5" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="1.8">PARALLEL EVIDENCE INPUTS</text>
+  <path d="M800 251H748C730 251 730 276 710 276" fill="none" stroke="#7183A4" stroke-width="2.5" marker-end="url(#arrow-slate)"/>
+  <path d="M800 361H710" fill="none" stroke="#7183A4" stroke-width="2.5" marker-end="url(#arrow-slate)"/>
+  <path d="M800 480H756C728 480 738 383 710 383" fill="none" stroke="#7183A4" stroke-width="2.5" marker-end="url(#arrow-slate)"/>
+
+  <path d="M675 415V450H760V505H800" fill="none" stroke="#22D3EE" stroke-width="2" stroke-dasharray="5 6" marker-end="url(#arrow-cyan)"/>
+  <rect x="662" y="421" width="180" height="28" rx="14" fill="#0E1730"/>
+  <text x="752" y="440" text-anchor="middle" fill="#76D6E5" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600">EVIDENCE RECOVERY</text>
+
+  <path d="M550 415V485" fill="none" stroke="#34D399" stroke-width="2.5" marker-end="url(#arrow-mint)"/>
+  <path d="M710 535H1138C1158 535 1158 348 1190 348" fill="none" stroke="#34D399" stroke-width="3" marker-end="url(#arrow-mint)"/>
+  <text x="1138" y="570" text-anchor="end" fill="#85DDBB" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600">VERIFIED SYNTHESIS</text>
+
+  <circle cx="100" cy="283" r="13" fill="#22D3EE" opacity="0.16"/>
+  <circle cx="100" cy="283" r="6" fill="#22D3EE"/>
+  <text x="126" y="291" fill="#F8FAFC" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="24" font-weight="650">Client</text>
+  <text x="88" y="337" fill="#A9B7CF" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="17">OpenAI-compatible</text>
+  <text x="88" y="363" fill="#A9B7CF" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="17">harness</text>
+
+  <rect x="414" y="249" width="34" height="24" rx="8" fill="#6366F1" opacity="0.22"/>
+  <path d="M423 261H439M431 253V269" stroke="#B8C5FF" stroke-width="2" stroke-linecap="round"/>
+  <text x="460" y="269" fill="#C9D2FF" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="700" letter-spacing="1.4">RESPONSE MODEL</text>
+  <text x="420" y="316" fill="#F8FAFC" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="600">Owns original context</text>
+  <text x="420" y="350" fill="#B3C0D7" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="18">Plans, refines, and writes</text>
+  <text x="420" y="380" fill="#B3C0D7" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="18">the final synthesis</text>
+
+  <circle cx="828" cy="251" r="7" fill="#6366F1"/>
+  <text x="850" y="258" fill="#EDF1FA" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">Knowledge model</text>
+  <circle cx="828" cy="361" r="7" fill="#22D3EE"/>
+  <text x="850" y="368" fill="#EDF1FA" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">Retrieval</text>
+  <circle cx="828" cy="470" r="7" fill="#34D399"/>
+  <text x="850" y="477" fill="#EDF1FA" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">Local draft + evidence</text>
+  <text x="850" y="505" fill="#91A2BF" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15">Recoverable working context</text>
+
+  <path d="M417 516L425 524L439 508" fill="none" stroke="#34D399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="453" y="525" fill="#D9F8EB" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="650">Verification + provenance</text>
+  <text x="418" y="557" fill="#91B8B2" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16">Check claims, omissions, and sources</text>
+
+  <text x="1282.5" y="329" text-anchor="middle" fill="#D9F8EB" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="21" font-weight="650">Final response</text>
+  <text x="1282.5" y="362" text-anchor="middle" fill="#9BD9C2" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15">Verified + attributable</text>
+  <path d="M1260 383H1305" stroke="#34D399" stroke-width="3" stroke-linecap="round"/>
+
+  <text x="64" y="698" fill="#6F819F" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15">One compatible interface. Explicit evidence flow. Auditable output.</text>
+  <text x="1375" y="698" text-anchor="end" fill="#6F819F" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="600" letter-spacing="1.5">SHANNON / BREAKFUSER</text>
+</svg>

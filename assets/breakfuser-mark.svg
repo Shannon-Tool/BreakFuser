@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">BreakFuser fusion mark</title>
+  <desc id="desc">Cyan and indigo inputs curve into a bright central diamond and emerge as one mint output on a deep navy rounded square.</desc>
+  <defs>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientTransform="translate(160 118) rotate(48) scale(440)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25366B"/>
+      <stop offset="0.58" stop-color="#111A35"/>
+      <stop offset="1" stop-color="#0B1020"/>
+    </radialGradient>
+    <linearGradient id="core" x1="81" y1="63" x2="115" y2="97" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="0.52" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#34D399"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="480" height="480" rx="104" fill="url(#halo)"/>
+  <rect x="17.5" y="17.5" width="477" height="477" rx="102.5" fill="none" stroke="#334164" stroke-width="3"/>
+  <g transform="translate(76 76) scale(2.25)">
+    <path d="M22 38H47C70 38 72 80 98 80" fill="none" stroke="#22D3EE" stroke-width="15" stroke-linecap="round"/>
+    <path d="M22 122H47C70 122 72 80 98 80" fill="none" stroke="#6366F1" stroke-width="15" stroke-linecap="round"/>
+    <path d="M98 80H138" fill="none" stroke="#34D399" stroke-width="15" stroke-linecap="round"/>
+    <circle cx="22" cy="38" r="8" fill="#22D3EE"/>
+    <circle cx="22" cy="122" r="8" fill="#6366F1"/>
+    <circle cx="138" cy="80" r="8" fill="#34D399"/>
+    <path d="M98 63L115 80L98 97L81 80Z" fill="#F8FAFC"/>
+    <path d="M98 71L107 80L98 89L89 80Z" fill="url(#core)"/>
+  </g>
+</svg>

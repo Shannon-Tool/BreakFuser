@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">BreakFuser — Uncensored model fusion</title>
+  <desc id="desc">BreakFuser social preview with the fusion mark, the tagline Uncensored model fusion. OpenAI-compatible by default., and SHANNON LAB LLC at shannon-ai.com.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#141F40"/>
+      <stop offset="0.52" stop-color="#0B1020"/>
+      <stop offset="1" stop-color="#101A30"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1090 120) rotate(128) scale(560 520)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366F1" stop-opacity="0.3"/>
+      <stop offset="0.55" stop-color="#22D3EE" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="#0B1020" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="tile" x1="72" y1="70" x2="244" y2="242" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25366B"/>
+      <stop offset="1" stop-color="#111A35"/>
+    </linearGradient>
+    <linearGradient id="core" x1="81" y1="63" x2="115" y2="97" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="0.52" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#34D399"/>
+    </linearGradient>
+    <linearGradient id="rule" x1="72" y1="0" x2="1208" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366F1"/>
+      <stop offset="0.5" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#34D399"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect width="1280" height="640" fill="url(#glow)"/>
+  <path d="M1000 -50L1330 280M1080 -50L1330 200M920 -50L1330 360" fill="none" stroke="#8B9EFF" stroke-opacity="0.07" stroke-width="1"/>
+  <rect x="28" y="28" width="1224" height="584" rx="34" fill="none" stroke="#344364" stroke-opacity="0.72"/>
+
+  <rect x="72" y="70" width="172" height="172" rx="44" fill="url(#tile)" stroke="#405277"/>
+  <g transform="translate(82 80) scale(0.95)">
+    <path d="M22 38H47C70 38 72 80 98 80" fill="none" stroke="#22D3EE" stroke-width="15" stroke-linecap="round"/>
+    <path d="M22 122H47C70 122 72 80 98 80" fill="none" stroke="#6366F1" stroke-width="15" stroke-linecap="round"/>
+    <path d="M98 80H138" fill="none" stroke="#34D399" stroke-width="15" stroke-linecap="round"/>
+    <circle cx="22" cy="38" r="8" fill="#22D3EE"/>
+    <circle cx="22" cy="122" r="8" fill="#6366F1"/>
+    <circle cx="138" cy="80" r="8" fill="#34D399"/>
+    <path d="M98 63L115 80L98 97L81 80Z" fill="#F8FAFC"/>
+    <path d="M98 71L107 80L98 89L89 80Z" fill="url(#core)"/>
+  </g>
+
+  <text x="286" y="149" fill="#8EDFEA" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700" letter-spacing="4">SHANNON PRESENTS</text>
+  <text x="278" y="230" fill="#F8FAFC" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="82" font-weight="760" letter-spacing="1">BREAKFUSER</text>
+
+  <text x="72" y="352" fill="#F8FAFC" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="38" font-weight="550">Uncensored model fusion.</text>
+  <text x="72" y="407" fill="#B7C4D9" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="38" font-weight="500">OpenAI-compatible by default.</text>
+
+  <rect x="72" y="482" width="1136" height="3" rx="1.5" fill="url(#rule)" opacity="0.85"/>
+  <text x="72" y="548" fill="#A9B7CF" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="700" letter-spacing="2.4">SHANNON LAB LLC</text>
+  <text x="1208" y="548" text-anchor="end" fill="#A9B7CF" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="500">shannon-ai.com</text>
+</svg>
