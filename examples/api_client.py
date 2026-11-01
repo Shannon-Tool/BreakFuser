@@ -1,4 +1,7 @@
-"""Call a running BreakFuser server from an OpenAI-shaped HTTP harness."""
+"""Call a running BreakFuser server from an OpenAI-shaped HTTP harness.
+
+The provenance field is optional; ordinary requests need only standard fields.
+"""
 
 import os
 

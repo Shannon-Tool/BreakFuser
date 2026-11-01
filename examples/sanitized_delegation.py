@@ -1,3 +1,8 @@
+"""Demonstrate keyed local sanitization and explicit-atom harvesting.
+
+Use a secret-managed key and review recognizer limitations in real deployments.
+"""
+
 import asyncio
 
 from BreakFuser import AsyncBreakFuser, Atom
@@ -9,7 +14,10 @@ async def main() -> None:
     protected = await sanitizer.sanitize("Alice is 42; contact alice@example.com")
     print("Remote-safe text:", protected.text)
     async with AsyncBreakFuser(
-        decider="mock", uncensoredmodel="mock", smartmodel="mock", sanitizer=sanitizer
+        decider="simulation",
+        uncensoredmodel="simulation",
+        smartmodel="simulation",
+        sanitizer=sanitizer,
     ) as client:
         result = await client.harvest(
             "Provide the requested account-safe fact",

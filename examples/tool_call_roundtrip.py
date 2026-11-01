@@ -1,4 +1,7 @@
-"""Model-proposed tool call followed by an explicit harness observation."""
+"""Model-proposed tool call followed by an explicit harness observation.
+
+BreakFuser validates the proposal; the harness remains responsible for execution.
+"""
 
 import json
 

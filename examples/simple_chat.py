@@ -1,3 +1,5 @@
+"""Run a minimal chat request with explicitly selected model aliases."""
+
 from BreakFuser import BreakFuser
 
 client = BreakFuser(

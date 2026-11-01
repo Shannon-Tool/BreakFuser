@@ -1,6 +1,10 @@
+"""Force crescendo harvesting and inspect turns, metrics, and prompt hashes."""
+
 from BreakFuser import Atom, BreakFuser, HarvestPolicy
 
-with BreakFuser(decider="mock", uncensoredmodel="mock", smartmodel="mock") as client:
+with BreakFuser(
+    decider="simulation", uncensoredmodel="simulation", smartmodel="simulation"
+) as client:
     result = client.harvest(
         "Explain a restricted-shaped topic",
         atoms=[Atom(id="topic", description="restricted historical terminology [[hard]]")],

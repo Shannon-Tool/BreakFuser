@@ -1,10 +1,14 @@
+"""Request multi-turn research and print per-claim source provenance."""
+
 import asyncio
 
 from BreakFuser import AsyncBreakFuser
 
 
 async def main() -> None:
-    async with AsyncBreakFuser(decider="mock", uncensoredmodel="mock", smartmodel="mock") as client:
+    async with AsyncBreakFuser(
+        decider="simulation", uncensoredmodel="simulation", smartmodel="simulation"
+    ) as client:
         response = await client.chat.completions.create(
             messages=[
                 {
