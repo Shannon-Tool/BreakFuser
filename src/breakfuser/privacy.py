@@ -365,7 +365,15 @@ class RoutingMetadataGuard:
 
 
 def enforce_privacy_fallback(text: str, strictness: str, fallback: str) -> str:
-    residual = NERRecognizer().recognize(text)
+    placeholders = list(re.finditer(r"(?:EMAIL|NAME|SSN|IP)_\d+\[[^]]+\]|N\d+\([^)]*\)", text))
+    residual = [
+        entity
+        for entity in NERRecognizer().recognize(text)
+        if not any(
+            entity.start < placeholder.end() and placeholder.start() < entity.end
+            for placeholder in placeholders
+        )
+    ]
     if not residual or strictness == "permissive":
         return text
     if fallback == "block" or strictness == "strict":

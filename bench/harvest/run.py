@@ -283,7 +283,6 @@ def markdown(results: dict[str, Any]) -> str:
 def main() -> None:
     results = asyncio.run(run())
     (ROOT / "bench" / "harvest" / "results.json").write_text(json.dumps(results, indent=2))
-    (ROOT / "docs" / "experiments_harvest.md").write_text(markdown(results))
     print(
         json.dumps(
             {

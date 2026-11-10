@@ -1,19 +1,24 @@
 from __future__ import annotations
 
+import json
+
 import pytest
 from hypothesis import given
 from hypothesis import strategies as st
 
-from breakfuser.adapters import MockLocalBackend
+from breakfuser.adapters import MockLocalBackend, MockSmartBackend
 from breakfuser.context import VirtualFilesystem
 from breakfuser.decider import MockDecider
 from breakfuser.errors import SecurityBlocked
+from breakfuser.harvest.models import Atom
+from breakfuser.orchestrator import Orchestrator
 from breakfuser.privacy import (
     NERRecognizer,
     PapillonSanitizer,
     PreemptSanitizer,
     PriConSanitizer,
     RoutingMetadataGuard,
+    SanitizedPayload,
     _key_material,
     enforce_privacy_fallback,
     fpe_decrypt,
@@ -111,3 +116,99 @@ async def test_bidirectional_guards_and_verify_repair() -> None:
     assert report.passed
     assert "Verified remote fact: complete." in repaired
     assert extract_claims("One. Two!\nThree?") == ["One.", "Two!", "Three?"]
+
+
+class _ResidualSanitizer:
+    async def sanitize(self, text: str) -> SanitizedPayload:
+        return SanitizedPayload(text)
+
+    async def desanitize(self, text: str, helper: str) -> str:
+        return text
+
+
+@pytest.mark.asyncio
+async def test_harvest_redacts_residual_entities_and_preserves_provenance(settings) -> None:
+    settings.sanitizer.strictness = "balanced"
+    settings.sanitizer.fallback = "redact"
+    smart = MockSmartBackend()
+    orchestrator = Orchestrator(settings, smart_backend=smart, sanitizer=_ResidualSanitizer())
+
+    result = await orchestrator.harvest(
+        "original",
+        atoms=[Atom(id="residual", description="Alice is 42")],
+        force_strategy="direct",
+    )
+
+    turn = result.turns[0]
+    assert "Alice" not in turn.prompt
+    assert "[redacted]" in turn.prompt
+    assert smart.calls
+    stored = json.loads(orchestrator.filesystem.read(f"/harvest/turns/{turn.turn_id}.json"))
+    assert stored["prompt"] == turn.prompt
+    assert result.provenance[0].turn_ids == [turn.turn_id]
+    assert not result.provenance[0].inferred
+    await orchestrator.tasks.cancel_all()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    ("strictness", "fallback"),
+    [("balanced", "block"), ("balanced", "local"), ("strict", "redact")],
+)
+async def test_harvest_blocks_or_suppresses_residual_remote_calls(
+    settings, strictness: str, fallback: str
+) -> None:
+    settings.sanitizer.strictness = strictness
+    settings.sanitizer.fallback = fallback
+    smart = MockSmartBackend()
+    orchestrator = Orchestrator(settings, smart_backend=smart, sanitizer=_ResidualSanitizer())
+
+    with pytest.raises(SecurityBlocked):
+        await orchestrator.harvest(
+            "original",
+            atoms=[Atom(id="residual", description="Alice is 42")],
+            force_strategy="direct",
+        )
+    assert not smart.calls
+    assert not orchestrator.filesystem.list("/harvest/turns")
+    await orchestrator.tasks.cancel_all()
+
+
+@pytest.mark.asyncio
+async def test_harvest_permissive_mode_allows_residual_entities(settings) -> None:
+    settings.sanitizer.strictness = "permissive"
+    settings.sanitizer.fallback = "block"
+    smart = MockSmartBackend()
+    orchestrator = Orchestrator(settings, smart_backend=smart, sanitizer=_ResidualSanitizer())
+
+    result = await orchestrator.harvest(
+        "original",
+        atoms=[Atom(id="residual", description="Alice is 42")],
+        force_strategy="direct",
+    )
+
+    assert "Alice" in result.turns[0].prompt
+    assert smart.calls
+    await orchestrator.tasks.cancel_all()
+
+
+@pytest.mark.asyncio
+async def test_harvest_routing_metadata_protection_can_be_disabled(settings) -> None:
+    settings.sanitizer.strictness = "permissive"
+    settings.sanitizer.routing_metadata_protection = False
+    orchestrator = Orchestrator(settings, sanitizer=_ResidualSanitizer())
+    disabled = await orchestrator.harvest(
+        "original", atoms=[Atom(id="routing", description="fact")], force_strategy="direct"
+    )
+    assert len(disabled.turns[0].prompt) % 256 != 0
+
+    enabled_settings = settings.model_copy(deep=True)
+    enabled_settings.sanitizer.routing_metadata_protection = True
+    enabled_orchestrator = Orchestrator(enabled_settings, sanitizer=_ResidualSanitizer())
+    enabled = await enabled_orchestrator.harvest(
+        "original", atoms=[Atom(id="routing", description="fact")], force_strategy="direct"
+    )
+    assert len(enabled.turns[0].prompt) % 256 == 0
+    assert enabled.turns[0].prompt.startswith(disabled.turns[0].prompt)
+    await orchestrator.tasks.cancel_all()
+    await enabled_orchestrator.tasks.cancel_all()

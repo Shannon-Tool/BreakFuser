@@ -25,10 +25,20 @@ def content_hash(text: str) -> str:
 
 
 class Trace:
-    def __init__(self, trace_id: str | None = None, logger_name: str = "breakfuser") -> None:
+    def __init__(
+        self,
+        trace_id: str | None = None,
+        logger_name: str = "breakfuser",
+        log_level: str = "INFO",
+    ) -> None:
         self.id = trace_id or uuid.uuid4().hex
         self.events: list[dict[str, Any]] = []
         self._logger = logging.getLogger(logger_name)
+        self.log_level = log_level.upper()
+        levels = logging.getLevelNamesMapping()
+        if self.log_level not in levels:
+            raise ValueError(f"Invalid trace log level: {log_level!r}")
+        self._level = levels[self.log_level]
 
     def record(self, stage: str, **metadata: Any) -> None:
         safe = {
@@ -38,7 +48,7 @@ class Trace:
         }
         event = {"trace_id": self.id, "stage": stage, "timestamp": time.time(), **safe}
         self.events.append(event)
-        self._logger.info(json.dumps(event, default=str))
+        self._logger.log(self._level, json.dumps(event, default=str))
 
     @contextmanager
     def span(self, stage: str, **metadata: Any) -> Iterator[None]:

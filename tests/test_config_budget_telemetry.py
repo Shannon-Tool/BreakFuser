@@ -7,6 +7,8 @@ import pytest
 from breakfuser.budget import BudgetManager, UsageAccumulator
 from breakfuser.config import BudgetSettings, HarvestPolicy, Settings, load_settings
 from breakfuser.errors import BudgetExhausted, ConfigurationError
+from breakfuser.models import ChatMessage
+from breakfuser.orchestrator import Orchestrator
 from breakfuser.telemetry import Trace, content_hash, redact
 
 
@@ -78,3 +80,46 @@ def test_trace_redaction_and_events(caplog) -> None:
     assert trace.events[0]["trace_id"] == "trace-id"
     assert "prompt" not in trace.events[0]
     assert "person@example.com" not in caplog.text
+
+
+def test_trace_normalizes_log_level_and_rejects_invalid_values() -> None:
+    trace = Trace(log_level="debug")
+    assert trace.log_level == "DEBUG"
+    with pytest.raises(ValueError, match="Invalid trace log level"):
+        Trace(log_level="verbose")
+
+
+@pytest.mark.asyncio
+async def test_linear_pipeline_emits_configured_debug_and_suppresses_info_at_warning(
+    settings, caplog
+) -> None:
+    settings.trace_log_level = "DEBUG"
+    orchestrator = Orchestrator(settings)
+    with caplog.at_level(logging.DEBUG, logger="breakfuser"):
+        response = await orchestrator.run([ChatMessage(role="user", content="Hello!")])
+    debug_records = [record for record in caplog.records if record.levelno == logging.DEBUG]
+    assert debug_records
+    assert response.breakfuser.events
+    await orchestrator.tasks.cancel_all()
+
+    warning_settings = settings.model_copy(deep=True)
+    warning_settings.trace_log_level = "WARNING"
+    warning_orchestrator = Orchestrator(warning_settings)
+    caplog.clear()
+    with caplog.at_level(logging.INFO, logger="breakfuser"):
+        warning_response = await warning_orchestrator.run(
+            [ChatMessage(role="user", content="Hello!")]
+        )
+    assert not [record for record in caplog.records if record.levelno == logging.INFO]
+    assert warning_response.breakfuser.events
+    await warning_orchestrator.tasks.cancel_all()
+
+
+@pytest.mark.asyncio
+async def test_legacy_pipeline_uses_configured_trace_level(settings, caplog) -> None:
+    settings.trace_log_level = "DEBUG"
+    orchestrator = Orchestrator(settings)
+    with caplog.at_level(logging.DEBUG, logger="breakfuser"):
+        await orchestrator._legacy_dag_run([ChatMessage(role="user", content="2 + 2")])
+    assert [record for record in caplog.records if record.levelno == logging.DEBUG]
+    await orchestrator.tasks.cancel_all()

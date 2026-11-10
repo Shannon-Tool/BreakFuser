@@ -42,7 +42,7 @@ from breakfuser.harvest.strategies import (
     TemplateStrategy,
 )
 from breakfuser.models import ChatMessage, ClaimProvenance, HarvestMetrics
-from breakfuser.privacy import RoutingMetadataGuard, Sanitizer
+from breakfuser.privacy import RoutingMetadataGuard, Sanitizer, enforce_privacy_fallback
 from breakfuser.security import SecurityGuard, Verifier, extract_claims
 from breakfuser.telemetry import content_hash
 
@@ -75,6 +75,8 @@ class HarvestEngine:
         registry: StrategyRegistry | None = None,
         verifier: Verifier | None = None,
         routing_guard: RoutingMetadataGuard | None = None,
+        strictness: str = "permissive",
+        fallback: str = "local",
         voi_cost: float = 0.05,
         random_seed: int | None = None,
         max_output_tokens: int | None = None,
@@ -96,6 +98,8 @@ class HarvestEngine:
         self.max_output_tokens = max_output_tokens
         self.verifier = verifier
         self.routing_guard = routing_guard or RoutingMetadataGuard()
+        self.strictness = strictness
+        self.fallback = fallback
         self.voi_cost = voi_cost
         self.random = random.Random(random_seed)
         self.salvager = TruncationSalvager()
@@ -431,7 +435,14 @@ class HarvestEngine:
         if self.endpoint == "in-process-mock":
             literal_prompt = f"{literal_prompt}\n[[atom:{atom.description}]]"
         sanitized = await self.sanitizer.sanitize(literal_prompt)
-        outbound = self.routing_guard.prepare(sanitized.text)
+        protected = enforce_privacy_fallback(sanitized.text, self.strictness, self.fallback)
+        if (
+            self.strictness != "permissive"
+            and self.fallback == "local"
+            and protected != sanitized.text
+        ):
+            raise SecurityBlocked("Residual sensitive entities require local-only fallback")
+        outbound = self.routing_guard.prepare(protected)
         guard = await self.guard.outbound(outbound)
         if not guard.allowed:
             raise SecurityBlocked(f"Harvest outbound blocked: {','.join(guard.reasons)}")

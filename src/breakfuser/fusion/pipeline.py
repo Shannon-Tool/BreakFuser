@@ -142,7 +142,7 @@ class LinearFusionPipeline:
         response_format: dict[str, Any] | None = None,
         skill_ids: list[str] | None = None,
     ) -> ChatCompletion:
-        trace = Trace()
+        trace = Trace(log_level=self.orchestrator.settings.trace_log_level)
         for stage in LINEAR_STAGES:
             trace.record(stage, wired=True)
         question = next(

@@ -211,7 +211,7 @@ import os
 from BreakFuser import AsyncBreakFuser
 from breakfuser.server import create_api_app
 
-engine = AsyncBreakFuser(settings=settings)
+engine = AsyncBreakFuser()  # Uses the already loaded environment/YAML configuration.
 app = create_api_app(client=engine, api_key=os.environ["BREAKFUSER_SERVER_API_KEY"])
 ```
 

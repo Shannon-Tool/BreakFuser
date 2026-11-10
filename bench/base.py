@@ -181,7 +181,6 @@ All numbers are measured against deterministic mocks or synthetic data; they are
 def main() -> None:
     results = asyncio.run(run())
     (ROOT / "bench" / "base_results.json").write_text(json.dumps(results, indent=2))
-    (ROOT / "docs" / "experiments_base.md").write_text(markdown(results))
     print(json.dumps({"status": "ok", "experiments": len(results) - 1}))
 
 

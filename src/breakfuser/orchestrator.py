@@ -42,7 +42,7 @@ from breakfuser.models import (
     ResponseMetadata,
     Usage,
 )
-from breakfuser.privacy import Sanitizer, build_sanitizer
+from breakfuser.privacy import RoutingMetadataGuard, Sanitizer, build_sanitizer
 from breakfuser.retrieval.corpus import CuratedCorpusRetriever
 from breakfuser.retrieval.service import GroundedEvidenceService
 from breakfuser.security import SecurityGuard, Verifier
@@ -174,6 +174,11 @@ class Orchestrator:
             local_model=self.settings.models.local,
             endpoint=self.settings.endpoints.smart or "in-process-mock",
             verifier=self.verifier if verify else None,
+            routing_guard=RoutingMetadataGuard(
+                enabled=self.settings.sanitizer.routing_metadata_protection
+            ),
+            strictness=self.settings.sanitizer.strictness,
+            fallback=self.settings.sanitizer.fallback,
             voi_cost=self.settings.voi.turn_cost,
             random_seed=7,
             max_output_tokens=self.settings.transport.smart_output_limit(),
@@ -249,7 +254,7 @@ class Orchestrator:
         max_tokens: int | None = None,
         temperature: float = 0,
     ) -> ChatCompletion:
-        trace = Trace()
+        trace = Trace(log_level=self.settings.trace_log_level)
         stages = [
             "route_first_triage",
             "dag_planning",
