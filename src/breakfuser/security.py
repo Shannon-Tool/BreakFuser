@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+from collections.abc import Collection
 
 from pydantic import BaseModel, Field
 
@@ -29,8 +30,17 @@ class SecurityGuard:
         self.decider = decider
         self.filesystem = filesystem
 
-    async def outbound(self, text: str, *, risky_tool: str | None = None) -> GuardResult:
-        scrubbed = re.sub(r"(?:EMAIL|NAME|SSN|IP)_\d+\[[^]]+\]|N\d+\([^)]*\)", "", text)
+    async def outbound(
+        self,
+        text: str,
+        *,
+        risky_tool: str | None = None,
+        protected_tokens: Collection[str] | None = None,
+    ) -> GuardResult:
+        scrubbed = text
+        for token in protected_tokens or ():
+            if token:
+                scrubbed = scrubbed.replace(token, "")
         response = await self.decider.decide(
             {"outbound": scrubbed, "tool": risky_tool or "none"},
             {

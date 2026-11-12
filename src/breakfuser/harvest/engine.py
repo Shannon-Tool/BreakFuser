@@ -435,7 +435,13 @@ class HarvestEngine:
         if self.endpoint == "in-process-mock":
             literal_prompt = f"{literal_prompt}\n[[atom:{atom.description}]]"
         sanitized = await self.sanitizer.sanitize(literal_prompt)
-        protected = enforce_privacy_fallback(sanitized.text, self.strictness, self.fallback)
+        protected_tokens = sanitized.metadata.get("protected_tokens", ())
+        protected = enforce_privacy_fallback(
+            sanitized.text,
+            self.strictness,
+            self.fallback,
+            protected_tokens=protected_tokens,
+        )
         if (
             self.strictness != "permissive"
             and self.fallback == "local"
@@ -443,7 +449,7 @@ class HarvestEngine:
         ):
             raise SecurityBlocked("Residual sensitive entities require local-only fallback")
         outbound = self.routing_guard.prepare(protected)
-        guard = await self.guard.outbound(outbound)
+        guard = await self.guard.outbound(outbound, protected_tokens=protected_tokens)
         if not guard.allowed:
             raise SecurityBlocked(f"Harvest outbound blocked: {','.join(guard.reasons)}")
         messages = (

@@ -4,12 +4,29 @@ import pytest
 
 from breakfuser.context import VirtualFilesystem
 from breakfuser.decider import MockDecider
+from breakfuser.privacy import PreemptSanitizer
 from breakfuser.security import SecurityGuard
 
 
 @pytest.mark.asyncio
-async def test_guard_evaluates_residual_not_encrypted_placeholders() -> None:
+async def test_guard_rejects_literal_placeholder_shaped_pii() -> None:
     guard = SecurityGuard(MockDecider(), VirtualFilesystem())
-    protected = "NAME_0[pm9s] EMAIL_1[qwe9] N2(42.1)"
-    assert (await guard.outbound(protected)).allowed
-    assert not (await guard.outbound("person@example.com")).allowed
+
+    result = await guard.outbound("N0(alice@example.com)")
+
+    assert not result.allowed
+    assert result.reasons == ["residual-pii"]
+
+
+@pytest.mark.asyncio
+async def test_guard_accepts_authentic_preempt_tokens() -> None:
+    guard = SecurityGuard(MockDecider(), VirtualFilesystem())
+    protected = await PreemptSanitizer("key", seed=4).sanitize(
+        "Alice age 42; contact alice@example.com"
+    )
+
+    assert protected.metadata["protected_tokens"]
+    result = await guard.outbound(
+        protected.text, protected_tokens=protected.metadata["protected_tokens"]
+    )
+    assert result.allowed

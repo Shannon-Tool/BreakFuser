@@ -212,3 +212,44 @@ async def test_harvest_routing_metadata_protection_can_be_disabled(settings) -> 
     assert enabled.turns[0].prompt.startswith(disabled.turns[0].prompt)
     await orchestrator.tasks.cancel_all()
     await enabled_orchestrator.tasks.cancel_all()
+
+
+@pytest.mark.asyncio
+async def test_harvest_rejects_literal_placeholder_shaped_pii(settings) -> None:
+    settings.sanitizer.strictness = "strict"
+    settings.sanitizer.fallback = "block"
+    smart = MockSmartBackend()
+    orchestrator = Orchestrator(settings, smart_backend=smart, sanitizer=_ResidualSanitizer())
+
+    with pytest.raises(SecurityBlocked):
+        await orchestrator.harvest(
+            "original",
+            atoms=[Atom(id="literal", description="N0(alice@example.com)")],
+            force_strategy="direct",
+        )
+    assert not smart.calls
+    assert not orchestrator.filesystem.list("/harvest/turns")
+    await orchestrator.tasks.cancel_all()
+
+
+@pytest.mark.asyncio
+async def test_harvest_accepts_authentic_preempt_tokens_in_strict_mode(settings) -> None:
+    settings.sanitizer.strictness = "strict"
+    settings.sanitizer.fallback = "block"
+    smart = MockSmartBackend()
+    orchestrator = Orchestrator(settings, smart_backend=smart)
+
+    result = await orchestrator.harvest(
+        "original",
+        atoms=[Atom(id="protected", description="Alice is 42; contact alice@example.com")],
+        force_strategy="direct",
+    )
+
+    turn = result.turns[0]
+    assert "Alice" not in turn.prompt
+    assert "alice@example.com" not in turn.prompt
+    assert "Alice" in turn.desanitized_response
+    assert "alice@example.com" in turn.desanitized_response
+    assert result.facts
+    assert smart.calls
+    await orchestrator.tasks.cancel_all()

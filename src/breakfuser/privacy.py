@@ -9,6 +9,7 @@ import math
 import random
 import re
 import secrets
+from collections.abc import Collection
 from dataclasses import dataclass
 from typing import Any, Protocol
 
@@ -222,6 +223,7 @@ class PreemptSanitizer:
         pieces: list[str] = []
         cursor = 0
         helper: dict[str, dict[str, str]] = {}
+        protected_tokens: list[str] = []
         for index, entity in enumerate(self.ner.recognize(text)):
             pieces.append(text[cursor : entity.start])
             token = f"E{index}"
@@ -234,9 +236,11 @@ class PreemptSanitizer:
                     -1 if self.random.random() < 0.5 else 1
                 )
                 replacement = f"{number + noise:.6g}"
-                pieces.append(f"N{index}({replacement})")
+                protected_token = f"N{index}({replacement})"
             else:
-                pieces.append(f"{entity.kind.upper()}_{index}[{encrypted}]")
+                protected_token = f"{entity.kind.upper()}_{index}[{encrypted}]"
+            pieces.append(protected_token)
+            protected_tokens.append(protected_token)
             cursor = entity.end
         pieces.append(text[cursor:])
         encoded = (
@@ -245,7 +249,13 @@ class PreemptSanitizer:
             else ""
         )
         return SanitizedPayload(
-            "".join(pieces), encoded, {"entities": len(helper), "mode": "preempt"}
+            "".join(pieces),
+            encoded,
+            {
+                "entities": len(helper),
+                "mode": "preempt",
+                "protected_tokens": protected_tokens,
+            },
         )
 
     async def desanitize(self, text: str, helper: str) -> str:
@@ -290,7 +300,9 @@ class PapillonSanitizer:
             self.model,
             max_tokens=self.max_output_tokens,
         )
-        return SanitizedPayload(response.content, protected.helper, {"mode": "papillon"})
+        return SanitizedPayload(
+            response.content, protected.helper, {**protected.metadata, "mode": "papillon"}
+        )
 
     async def desanitize(self, text: str, helper: str) -> str:
         return await self.fallback.desanitize(text, helper)
@@ -364,8 +376,19 @@ class RoutingMetadataGuard:
         return text + " " * (target - len(text))
 
 
-def enforce_privacy_fallback(text: str, strictness: str, fallback: str) -> str:
-    placeholders = list(re.finditer(r"(?:EMAIL|NAME|SSN|IP)_\d+\[[^]]+\]|N\d+\([^)]*\)", text))
+def enforce_privacy_fallback(
+    text: str,
+    strictness: str,
+    fallback: str,
+    *,
+    protected_tokens: Collection[str] | None = None,
+) -> str:
+    placeholders = [
+        match
+        for token in protected_tokens or ()
+        if token
+        for match in re.finditer(re.escape(token), text)
+    ]
     residual = [
         entity
         for entity in NERRecognizer().recognize(text)
