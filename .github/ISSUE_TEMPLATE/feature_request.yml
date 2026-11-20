@@ -1,0 +1,46 @@
+name: Feature request
+description: Propose an improvement to BreakFuser
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an improvement. Review the [documentation](https://github.com/Shannon-Tool/BreakFuser/blob/main/docs/index.md) for existing capabilities. Do not include credentials, private endpoints, personal data, or raw sensitive prompts. Security concerns belong in the [private reporting process](https://github.com/Shannon-Tool/BreakFuser/blob/main/SECURITY.md), not a public issue.
+  - type: input
+    id: version
+    attributes:
+      label: BreakFuser version
+      description: Release or source revision your request is based on.
+      placeholder: 0.1.0
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: Describe the limitation and who it affects. Use synthetic examples where possible.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the expected interface and behavior, including relevant compatibility constraints.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe workarounds or alternative designs and their tradeoffs.
+  - type: textarea
+    id: context
+    attributes:
+      label: Provider-neutral context
+      description: Optional Python, HTTP, tool, MCP, privacy, or deployment considerations. Do not provide private configuration or diagnostics.
+  - type: checkboxes
+    id: redaction
+    attributes:
+      label: Redaction check
+      options:
+        - label: I have removed secrets and sensitive content from this request.
+          required: true

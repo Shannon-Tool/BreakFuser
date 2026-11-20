@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/Shannon-Tool/BreakFuser/blob/main/docs/index.md
+    about: Start with configuration, API, integration, and troubleshooting guides.
+  - name: Security policy and private reporting
+    url: https://github.com/Shannon-Tool/BreakFuser/blob/main/SECURITY.md
+    about: Report vulnerabilities privately to team@shannon-ai.com; do not open a public issue.

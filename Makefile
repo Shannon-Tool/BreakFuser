@@ -1,4 +1,4 @@
-.PHONY: install lint typecheck test e2e bench acceptance clean
+.PHONY: install lint typecheck test e2e bench package acceptance clean
 
 install:
 	python -m pip install -e '.[dev]'
@@ -20,6 +20,9 @@ e2e:
 bench:
 	python -m bench.harvest.run
 	python -m bench.base
+
+package:
+	python -m build
 
 acceptance: lint typecheck test e2e bench
 

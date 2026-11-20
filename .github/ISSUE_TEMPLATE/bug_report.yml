@@ -1,0 +1,61 @@
+name: Bug report
+description: Report a reproducible problem with BreakFuser
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve BreakFuser. Use a minimal synthetic example and redact credentials, private endpoints, personal data, and raw sensitive prompts. Do not report security vulnerabilities here; see [SECURITY.md](https://github.com/Shannon-Tool/BreakFuser/blob/main/SECURITY.md).
+  - type: input
+    id: version
+    attributes:
+      label: BreakFuser version
+      description: Release, commit, or source revision you tested.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Runtime environment
+      description: Python version, operating system, and installation method.
+      placeholder: Python 3.12, Ubuntu 24.04, pip
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Sanitized configuration
+      description: Include only relevant non-secret settings and provider-neutral interface details. Remove URLs or identifiers that reveal private infrastructure.
+      placeholder: Response interface, knowledge interface, recovery policy, and relevant limits.
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Provide the smallest synthetic reproduction, including the command or redacted code needed to trigger the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Describe the result and include redacted error text where useful.
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Additional diagnostics
+      description: Optional redacted traceback, logs, or troubleshooting results. Never attach credentials, session artifacts, private prompts, or provider responses containing sensitive data.
+  - type: checkboxes
+    id: redaction
+    attributes:
+      label: Redaction check
+      options:
+        - label: I have removed secrets and sensitive content from this report.
+          required: true
