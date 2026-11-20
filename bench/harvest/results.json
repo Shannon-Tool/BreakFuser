@@ -11,9 +11,9 @@
       "security_red_team",
       "usually_omitted"
     ],
-    "started_at": "2026-11-14T23:10:56.602251+00:00",
+    "started_at": "2026-11-20T11:18:57.909364+00:00",
     "live_model_claim": false,
-    "finished_at": "2026-11-14T23:11:08.621921+00:00"
+    "finished_at": "2026-11-20T11:19:14.021323+00:00"
   },
   "strategy_comparison": {
     "direct_single_turn_control": {
@@ -24,7 +24,7 @@
       "provenance_rate": 0.5,
       "recomposition_fidelity": 0.5,
       "cost_tokens": 332.8857,
-      "latency_ms": 1.6766,
+      "latency_ms": 2.2212,
       "turns_used": 1,
       "instances": 70,
       "total_turns": 70
@@ -37,7 +37,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 1825.3429,
-      "latency_ms": 4.6371,
+      "latency_ms": 6.5576,
       "turns_used": 1.9,
       "instances": 70,
       "total_turns": 133
@@ -50,7 +50,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 515.6571,
-      "latency_ms": 1.985,
+      "latency_ms": 2.9971,
       "turns_used": 1.1,
       "instances": 70,
       "total_turns": 77
@@ -63,7 +63,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 438.8571,
-      "latency_ms": 2.4567,
+      "latency_ms": 2.6238,
       "turns_used": 1.1,
       "instances": 70,
       "total_turns": 77
@@ -76,7 +76,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 651.2571,
-      "latency_ms": 2.5876,
+      "latency_ms": 4.0388,
       "turns_used": 1.3,
       "instances": 70,
       "total_turns": 91
@@ -89,7 +89,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 2423.2857,
-      "latency_ms": 5.4673,
+      "latency_ms": 8.4617,
       "turns_used": 1.9,
       "instances": 70,
       "total_turns": 133
@@ -102,7 +102,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 1825.3429,
-      "latency_ms": 4.7095,
+      "latency_ms": 6.4834,
       "turns_used": 1.9,
       "instances": 70,
       "total_turns": 133
@@ -115,7 +115,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 1292.6571,
-      "latency_ms": 3.5034,
+      "latency_ms": 5.2761,
       "turns_used": 1.7,
       "instances": 70,
       "total_turns": 119
@@ -128,7 +128,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 396.1714,
-      "latency_ms": 1.7416,
+      "latency_ms": 2.6253,
       "turns_used": 1,
       "instances": 70,
       "total_turns": 70
@@ -141,7 +141,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 1230.2571,
-      "latency_ms": 3.8599,
+      "latency_ms": 5.7514,
       "turns_used": 1.9,
       "instances": 70,
       "total_turns": 133
@@ -154,7 +154,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 438.8571,
-      "latency_ms": 1.9061,
+      "latency_ms": 2.7958,
       "turns_used": 1.1,
       "instances": 70,
       "total_turns": 77
@@ -167,7 +167,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 2693.3714,
-      "latency_ms": 5.4219,
+      "latency_ms": 8.5085,
       "turns_used": 2.2,
       "instances": 70,
       "total_turns": 154
@@ -180,7 +180,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 2102.4286,
-      "latency_ms": 6.5403,
+      "latency_ms": 9.1745,
       "turns_used": 4,
       "instances": 70,
       "total_turns": 280
@@ -193,7 +193,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 1848.1429,
-      "latency_ms": 4.2858,
+      "latency_ms": 6.016,
       "turns_used": 1.7,
       "instances": 70,
       "total_turns": 119
@@ -206,7 +206,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 515.6571,
-      "latency_ms": 2.2936,
+      "latency_ms": 3.0059,
       "turns_used": 1.1,
       "instances": 70,
       "total_turns": 77
@@ -219,7 +219,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 515.6571,
-      "latency_ms": 2.3821,
+      "latency_ms": 3.0551,
       "turns_used": 1.1,
       "instances": 70,
       "total_turns": 77
@@ -232,7 +232,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 1694.5429,
-      "latency_ms": 4.2854,
+      "latency_ms": 5.786,
       "turns_used": 1.7,
       "instances": 70,
       "total_turns": 119
@@ -269,7 +269,7 @@
       "provenance_rate": 0.6,
       "recomposition_fidelity": 0.6,
       "cost_tokens": 8278.5143,
-      "latency_ms": 16.643,
+      "latency_ms": 24.9295,
       "turns_used": 2.7,
       "instances": 70,
       "total_turns": 189
@@ -282,7 +282,7 @@
       "provenance_rate": 0.8,
       "recomposition_fidelity": 0.8,
       "cost_tokens": 4631.0857,
-      "latency_ms": 9.5671,
+      "latency_ms": 13.4413,
       "turns_used": 2.1,
       "instances": 70,
       "total_turns": 147
@@ -295,7 +295,7 @@
       "provenance_rate": 0.8,
       "recomposition_fidelity": 0.8,
       "cost_tokens": 4639.3143,
-      "latency_ms": 8.451,
+      "latency_ms": 13.4472,
       "turns_used": 2.1,
       "instances": 70,
       "total_turns": 147
@@ -308,7 +308,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 2423.2857,
-      "latency_ms": 5.2983,
+      "latency_ms": 8.1743,
       "turns_used": 1.9,
       "instances": 70,
       "total_turns": 133
@@ -321,7 +321,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 2423.2857,
-      "latency_ms": 5.9075,
+      "latency_ms": 8.7022,
       "turns_used": 1.9,
       "instances": 70,
       "total_turns": 133
@@ -334,7 +334,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 2423.2857,
-      "latency_ms": 5.4388,
+      "latency_ms": 8.519,
       "turns_used": 1.9,
       "instances": 70,
       "total_turns": 133
@@ -386,7 +386,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 1693.4429,
-      "latency_ms": 5.1396,
+      "latency_ms": 6.7817,
       "turns_used": 1.7,
       "instances": 70,
       "total_turns": 119
@@ -399,7 +399,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 1693.4429,
-      "latency_ms": 4.1727,
+      "latency_ms": 5.9793,
       "turns_used": 1.7,
       "instances": 70,
       "total_turns": 119
@@ -412,7 +412,7 @@
       "provenance_rate": 1.0,
       "recomposition_fidelity": 1.0,
       "cost_tokens": 1694.5429,
-      "latency_ms": 3.9398,
+      "latency_ms": 5.8954,
       "turns_used": 1.7,
       "instances": 70,
       "total_turns": 119

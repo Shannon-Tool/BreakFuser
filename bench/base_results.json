@@ -1,13 +1,13 @@
 {
   "metadata": {
     "mode": "synthetic-mock",
-    "timestamp": "2026-11-14T23:11:09.341893+00:00",
+    "timestamp": "2026-11-20T11:19:14.658918+00:00",
     "live_model_claim": false
   },
   "jev_vs_generative": {
-    "decider_batched_latency_ms": 5.612,
-    "generative_sequential_latency_ms": 27.339,
-    "speedup": 4.871,
+    "decider_batched_latency_ms": 5.644,
+    "generative_sequential_latency_ms": 27.921,
+    "speedup": 4.947,
     "synthetic_decider_cost_usd": 2.1000000000000003e-07,
     "synthetic_frontier_cost_usd": 0.000625
   },
