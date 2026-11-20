@@ -153,7 +153,7 @@ For local browser automation, inject a configured Playwright adapter rather than
 
 | Environment variable | YAML path | Default | Purpose |
 |---|---|---|---|
-| `BREAKFUSER_MODE` | `mode` | local simulation | Set `live` for configured external providers. |
+| `BREAKFUSER_MODE` | `mode` | development | Set `live` for configured external providers. |
 | `BREAKFUSER_USE_DECIDER` | `use_decider` | `true` | Enable the semantic decider; false selects local rules. |
 | `BREAKFUSER_CONFIG` | — | unset | YAML file path. |
 | `BREAKFUSER_DECIDER_MODEL` | `models.decider` | unspecified | Decider alias. |
@@ -198,7 +198,7 @@ Monetary budgets account for cost fields returned through adapters; they are not
 | `BREAKFUSER_SANITIZER_FALLBACK` | `sanitizer.fallback` | `local` | Residual-entity handling: `local`, `redact`, or `block`. |
 | `BREAKFUSER_SANITIZER_KEY` | `sanitizer.key` | generated | Stable key for reversible local desanitization. |
 | — | `sanitizer.routing_metadata_protection` | `true` | Pad routed text into length buckets. |
-| `BREAKFUSER_BROWSER_PROVIDER` | `browser.provider` | local simulation | Select the configured browser implementation. |
+| `BREAKFUSER_BROWSER_PROVIDER` | `browser.provider` | development | Select the configured browser implementation. |
 | `BREAKFUSER_BROWSER_ENDPOINT` | `endpoints.browser` | unset | Stagehand/Browserbase-compatible tool service root. |
 | `BREAKFUSER_BROWSER_API_KEY` | `browser.api_key` | unset | Browser-service credential. |
 | — | `browser.model_timeout_seconds` | `20` | Browser operation/model timeout. |

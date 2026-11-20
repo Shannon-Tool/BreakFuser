@@ -67,7 +67,7 @@ The OpenAI server Bearer setting does not automatically secure MCP HTTP or brows
 
 ## Browser and tool isolation
 
-The local simulation browser is not a security sandbox. Stagehand/Browserbase-compatible deployments should use the provider's remote isolation and access controls. Playwright uses navigation/event waits and timeouts, but a local browser process still needs operating-system sandboxing, filesystem restrictions, network egress policy, and credential isolation.
+The built-in development browser is not a security sandbox. Stagehand/Browserbase-compatible deployments should use the provider's remote isolation and access controls. Playwright uses navigation/event waits and timeouts, but a local browser process still needs operating-system sandboxing, filesystem restrictions, network egress policy, and credential isolation.
 
 Remote handoff links expire after 15 minutes; treat them as bearer-like session capabilities and do not log or share them. Local Playwright cannot issue a remote authenticated handoff link. Screenshots and extracted page text can contain sensitive data and external instructions.
 

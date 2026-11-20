@@ -1,4 +1,7 @@
-"""Request multi-turn research and print per-claim source provenance."""
+"""Request multi-turn research and print per-claim source provenance.
+
+Uses configured providers and defaults to local development services without live configuration.
+"""
 
 import asyncio
 
@@ -6,9 +9,7 @@ from BreakFuser import AsyncBreakFuser
 
 
 async def main() -> None:
-    async with AsyncBreakFuser(
-        decider="simulation", uncensoredmodel="simulation", smartmodel="simulation"
-    ) as client:
+    async with AsyncBreakFuser() as client:
         response = await client.chat.completions.create(
             messages=[
                 {

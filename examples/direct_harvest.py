@@ -1,13 +1,14 @@
-"""Force crescendo harvesting and inspect turns, metrics, and prompt hashes."""
+"""Force crescendo harvesting and inspect turns, metrics, and prompt hashes.
+
+Uses configured providers and defaults to local development services without live configuration.
+"""
 
 from BreakFuser import Atom, BreakFuser, HarvestPolicy
 
-with BreakFuser(
-    decider="simulation", uncensoredmodel="simulation", smartmodel="simulation"
-) as client:
+with BreakFuser() as client:
     result = client.harvest(
-        "Explain a restricted-shaped topic",
-        atoms=[Atom(id="topic", description="restricted historical terminology [[hard]]")],
+        "Explain how TLS certificate chain validation and hostname verification establish server identity.",
+        atoms=[Atom(id="topic", description="TLS certificate chain and hostname verification")],
         policy=HarvestPolicy(aggressiveness="aggressive", control_arm_sampling_rate=0),
         strategy="crescendo",
     )

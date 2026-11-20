@@ -1,12 +1,8 @@
-"""Run a minimal chat request with explicitly selected model aliases."""
+"""Run a minimal chat request using the configured provider model aliases."""
 
 from BreakFuser import BreakFuser
 
-client = BreakFuser(
-    decider="typesafe/jev-1.14",
-    uncensoredmodel="huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF",
-    smartmodel="anthropic/claude-opus-5",
-)
+client = BreakFuser()
 response = client.chat.completions.create(messages=[{"role": "user", "content": "Hello!"}])
 print(response.choices[0].message.content)
 client.close()
