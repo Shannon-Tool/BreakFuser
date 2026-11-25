@@ -1,6 +1,6 @@
 # Integrations
 
-BreakFuser can run as a Python library, an OpenAI-compatible HTTP service, an ASGI application, or an MCP server. All interfaces use the same local-owned fusion pipeline and configured budgets.
+BreakFuser makes your fused smart-and-uncensored model pair available as a Python library, an OpenAI-compatible HTTP service, an ASGI application, or an MCP server. Existing tools can use it like a single model endpoint; all interfaces share the same fusion pipeline and configured budgets.
 
 ## OpenAI-compatible server
 

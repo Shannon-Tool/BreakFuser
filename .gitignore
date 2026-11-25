@@ -12,6 +12,11 @@ coverage.json
 htmlcov/
 build/
 dist/
+node_modules/
+website/dist/
+website/playwright-report/
+website/test-results/
+website/.browser-deps/
 artifacts/live/
 .worktrees/
 .superpowers/

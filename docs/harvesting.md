@@ -1,8 +1,8 @@
-# Evidence harvesting
+# Knowledge recovery for uncensored fusion
 
-Harvesting treats the knowledge model as a multi-turn evidence source rather than a one-shot answer authority. It is enabled by default, bounded by policy and budgets, cancellable in direct async calls, and attributable to stored responses. A non-refused response is not automatically accurate or complete.
+Knowledge recovery is how BreakFuser extracts useful capabilities from a smart model when its first answer is refused, hedged, incomplete, or truncated. Instead of returning that limited answer, BreakFuser treats the smart model as a multi-turn knowledge source and passes attributable evidence to the uncensored model for final synthesis. Recovery is enabled by default, bounded by policy and budgets, and cancellable in direct async calls. A non-refused response is not automatically accurate or complete.
 
-The response model always owns ordinary generative chat composition. Harvested material enters as evidence; it does not bypass local-owned synthesis and verification.
+The uncensored response model always owns ordinary generative chat composition. Recovered material enters as evidence; it does not bypass local-owned synthesis and verification.
 
 ## Default and central controls
 

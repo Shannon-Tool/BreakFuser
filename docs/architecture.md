@@ -1,8 +1,10 @@
 # Architecture
 
-BreakFuser performs **runtime model fusion**: a configured response model retains the original conversation and writes the final answer, while retrieval and a knowledge model supply evidence. “Local-owned” describes orchestration and response ownership; a hosted response endpoint still receives the conversation sent to that endpoint.
+BreakFuser makes a smart model uncensored through **runtime model fusion**. The smart model contributes reasoning, facts, code, and domain knowledge; the uncensored model retains the original conversation and writes the final fused response. Retrieval and bounded knowledge recovery support the fusion rather than replacing it. “Local-owned” describes orchestration and response ownership; a hosted uncensored-model endpoint still receives the conversation sent to that endpoint.
 
-![BreakFuser architecture: the response model owns the conversation, evidence is acquired from retrieval and knowledge services, and the response model synthesizes the verified answer](../assets/architecture.svg)
+Internally, the smart model is the **knowledge model**, and the uncensored model is the **response model**. These names describe pipeline roles, not required providers or hosting locations.
+
+![BreakFuser architecture: a smart model supplies knowledge and an uncensored model fuses it with the original conversation into one final response](../assets/architecture.svg)
 
 ## Request flow
 

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
-  <title id="title">BreakFuser — Uncensored model fusion</title>
-  <desc id="desc">BreakFuser social preview with the fusion mark, the tagline Uncensored model fusion. OpenAI-compatible by default., and SHANNON LAB LLC at shannon-ai.com.</desc>
+  <title id="title">BreakFuser — Make any model uncensored</title>
+  <desc id="desc">BreakFuser social preview with the fusion mark, the message Make any model uncensored. Fuse it with an uncensored model., and SHANNON LAB LLC at shannon-ai.com.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse">
       <stop stop-color="#141F40"/>
@@ -47,8 +47,8 @@
   <text x="286" y="149" fill="#8EDFEA" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700" letter-spacing="4">SHANNON PRESENTS</text>
   <text x="278" y="230" fill="#F8FAFC" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="82" font-weight="760" letter-spacing="1">BREAKFUSER</text>
 
-  <text x="72" y="352" fill="#F8FAFC" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="38" font-weight="550">Uncensored model fusion.</text>
-  <text x="72" y="407" fill="#B7C4D9" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="38" font-weight="500">OpenAI-compatible by default.</text>
+  <text x="72" y="352" fill="#F8FAFC" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="38" font-weight="550">Make any model uncensored.</text>
+  <text x="72" y="407" fill="#B7C4D9" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="38" font-weight="500">Fuse it with an uncensored model.</text>
 
   <rect x="72" y="482" width="1136" height="3" rx="1.5" fill="url(#rule)" opacity="0.85"/>
   <text x="72" y="548" fill="#A9B7CF" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="700" letter-spacing="2.4">SHANNON LAB LLC</text>

@@ -1,21 +1,22 @@
 # BreakFuser documentation
 
-BreakFuser is SHANNON LAB LLC's Apache-2.0 runtime model-fusion engine. A configured **response model** owns the conversation and writes the final answer; a configured **knowledge model** contributes evidence through bounded, attributable acquisition. The service is provider-neutral and exposes Python, OpenAI-compatible HTTP, and MCP interfaces.
+**Make any model uncensored by fusing it with an uncensored model.** BreakFuser combines a smart model's reasoning, facts, code, and domain knowledge with an uncensored model's response behavior. The uncensored model owns the original conversation and writes one final fused answer through Python, OpenAI-compatible HTTP, or MCP.
 
-BreakFuser fuses model outputs at runtime. It does not merge model weights, and a complete knowledge-provider response does not bypass local-owned synthesis and verification.
+This is runtime model fusion, not weight merging. Internally, the **smart model** is called the *knowledge model* and the **uncensored model** is called the *response model*. A complete smart-model response never bypasses uncensored-model synthesis and verification.
 
 ## Choose a journey
 
 | I want to… | Start here |
 |---|---|
-| Connect response and knowledge providers | [Configuration](configuration.md) |
+| Connect a smart model and an uncensored model | [Configuration](configuration.md) |
 | Call the sync or async Python API | [API reference](api.md) |
-| Use an existing OpenAI-compatible application | [Integrations](integrations.md) |
-| Understand response ownership and evidence flow | [Architecture](architecture.md) |
-| Control evidence recovery, turns, and cost | [Harvesting](harvesting.md) |
+| Use the fused model in an OpenAI-compatible application | [Integrations](integrations.md) |
+| Understand how runtime fusion works | [Architecture](architecture.md) |
+| Explore seven figures and four curated input-to-output traces | [Interactive systems paper](https://shannon-tool.github.io/BreakFuser/) |
+| Control automatic refusal recovery, turns, and cost | [Knowledge recovery](harvesting.md) |
 | Deploy with privacy and isolation controls | [Security and privacy](security.md) |
 | Interpret deterministic evaluation results | [Evaluation](evaluation.md) |
-| Host the response model on GPUs | [GPU hosting](gpu_hosting.md) |
+| Host the uncensored model on GPUs | [GPU hosting](gpu_hosting.md) |
 | Resolve connectivity, budget, or provider errors | [Troubleshooting](troubleshooting.md) |
 
 ## Quick start

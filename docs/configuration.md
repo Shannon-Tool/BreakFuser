@@ -1,14 +1,14 @@
 # Configuration
 
-BreakFuser connects three independent roles. Model names are aliases passed to the configured provider; no provider, checkpoint, or credential is embedded in the package.
+To make a smart model uncensored, connect it to an uncensored fusion model. BreakFuser also supports an optional decider for typed judgments. Model names are aliases passed to the configured provider; no provider, checkpoint, or credential is embedded in the package.
 
 | Role | Setting | Responsibility |
 |---|---|---|
-| Response model | `models.local`, `uncensoredmodel` | Owns conversation context, drafts, synthesis, repair, skills, and tool-call proposals. Usually an uncensored model selected by the operator. |
-| Knowledge model | `models.smart`, `smartmodel` | Supplies research, reasoning, code, and evidence through sanitized harvest turns. |
+| Uncensored model (response role) | `models.local`, `uncensoredmodel` | Owns conversation context, drafts, synthesis, repair, skills, and tool-call proposals; writes the final fused answer. |
+| Smart model (knowledge role) | `models.smart`, `smartmodel` | The model being enhanced; supplies research, reasoning, code, and domain knowledge through sanitized recovery turns. |
 | Optional decider | `models.decider`, `decider` | Supplies non-generative Choice, Score, and Noul judgments for routing, quality, privacy, stopping, and audits. |
 
-“Local” identifies the response-owner role, not a requirement that the endpoint be on the same machine. Both chat roles use OpenAI-compatible endpoints.
+“Local” identifies the uncensored response-owner role, not a requirement that the endpoint be on the same machine. Both chat roles use OpenAI-compatible endpoints.
 
 ## Real-provider setup
 

@@ -1,0 +1,32 @@
+{
+    "name": "breakfuser-guided-simulation",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "npm run typecheck && vite build && npm run check:artifact",
+        "check:artifact": "node scripts/check-production.mjs",
+        "preview": "vite preview",
+        "typecheck": "tsc --noEmit",
+        "test": "vitest",
+        "test:e2e": "PLAYWRIGHT_BROWSERS_PATH=0 playwright test",
+        "record:gif": "node ../tools/fusion-gif/record.mjs",
+        "format:check": "prettier --check . ../tools/fusion-gif"
+    },
+    "dependencies": {
+        "three": "0.187.0"
+    },
+    "devDependencies": {
+        "@playwright/test": "1.65.1",
+        "@types/node": "26.6.7",
+        "@types/three": "0.187.0",
+        "gifenc": "1.0.3",
+        "happy-dom": "21.0.4",
+        "pngjs": "7.0.0",
+        "prettier": "3.10.1",
+        "typescript": "7.0.2",
+        "vite": "8.3.8",
+        "vitest": "5.1.1"
+    }
+}

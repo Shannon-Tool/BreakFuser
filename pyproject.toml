@@ -5,13 +5,13 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "BreakFuser"
 version = "0.1.0"
-description = "Provider-neutral runtime model fusion with evidence recovery and OpenAI-compatible APIs"
+description = "Make any model uncensored by fusing it with an uncensored model at runtime"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "Apache-2.0"
 authors = [{name = "SHANNON LAB LLC", email = "team@shannon-ai.com"}]
 maintainers = [{name = "SHANNON LAB LLC", email = "team@shannon-ai.com"}]
-keywords = ["llm", "model-fusion", "openai-compatible", "agents", "mcp", "research"]
+keywords = ["llm", "uncensored-ai", "model-fusion", "runtime-fusion", "openai-compatible", "agents", "mcp"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",

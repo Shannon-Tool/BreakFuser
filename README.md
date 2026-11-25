@@ -1,10 +1,11 @@
 <div align="center">
-  <img src="assets/breakfuser-logo.svg" alt="BreakFuser — a SHANNON open-source project" width="640">
+  <img src="assets/breakfuser-logo.svg" alt="BreakFuser — make any model uncensored" width="640">
 
-  <h3>Uncensored model fusion. OpenAI-compatible by default.</h3>
+  <h2>Make any model uncensored.</h2>
 
   <p>
-    Combine the reasoning of any smart model with the response freedom of your chosen uncensored model.
+    <strong>Fuse any model with an uncensored model at runtime.</strong><br>
+    Keep the smart model's capabilities. Let the uncensored model write the final answer.
   </p>
 
   <p>
@@ -21,20 +22,100 @@
   </p>
 </div>
 
-## Why BreakFuser?
+## Any model. One uncensored endpoint.
 
-BreakFuser is a provider-neutral fusion engine for developers who want capable AI responses without silently inheriting a provider's overrefusals. A configured **response model** owns the conversation and writes every final answer. A configured **knowledge model** contributes reasoning, facts, code, and evidence through a bounded, auditable acquisition pipeline.
+BreakFuser makes any model uncensored by fusing it with an uncensored model. Your **smart model** contributes reasoning, facts, code, and domain knowledge. Your chosen **uncensored model** owns the conversation and fuses that knowledge into the final response. The result is designed to retain the smart model's capabilities while reducing overrefusals, unnecessary hedging, and omitted answers.
 
-This is **runtime model fusion**, not weight merging. Your knowledge provider's model is not modified, and its raw response is never automatically passed through as the final answer.
+This is **runtime model fusion**, not weight merging. BreakFuser does not modify the original model or blindly relay its raw response. It detects refusals and incomplete answers, recovers useful knowledge through bounded follow-up turns, and gives that evidence to the uncensored model for one seamless answer.
 
-- **Response ownership:** the uncensored model retains the original context and performs final synthesis.
-- **Evidence recovery:** decomposition, crescendo, refusal repair, continuation, and expert framing recover incomplete responses.
-- **OpenAI-compatible:** use the Python client or point existing tools at `/v1/chat/completions`.
-- **Ready for harnesses:** streaming, function calling, response formats, skills, and MCP use the same pipeline.
-- **Auditable:** provenance links claims to stored turns; verification distinguishes attribution from factual truth.
-- **Provider-neutral:** connect hosted APIs, Ollama, vLLM, SGLang, or another OpenAI-compatible server.
+- **Fuse any two compatible models:** combine hosted APIs, Ollama, vLLM, SGLang, or another OpenAI-compatible server.
+- **Preserve capability:** keep the smart model's reasoning, coding, research, and domain expertise in the fusion process.
+- **Reduce overrefusals:** decomposition, crescendo, refusal repair, continuation, and expert framing recover refused or incomplete knowledge automatically.
+- **One uncensored response:** the uncensored model retains the original context and performs final synthesis instead of exposing a chain of intermediate prompts.
+- **Drop-in compatibility:** use the Python client or point existing tools at `/v1/chat/completions`; no custom headers or harness changes are needed.
+- **Ready for real workflows:** streaming, function calling, response formats, skills, and MCP use the same fusion pipeline.
+- **Auditable by design:** provenance links claims to stored turns, while verification distinguishes attribution from factual truth.
 
-<img src="assets/architecture.svg" alt="BreakFuser architecture: a request reaches the response model, evidence is acquired from knowledge and retrieval services, and the response model synthesizes the verified answer" width="100%">
+<img src="assets/architecture.svg" alt="BreakFuser fuses a smart model with an uncensored model to produce one final uncensored response through an OpenAI-compatible interface" width="100%">
+
+## See the fusion in motion
+
+Ten synchronized 3D recordings show the actual nonlinear pipeline: concurrent acquisition, bounded recovery loops, evidence fan-in, uncensored composition, and verified delivery. These are curated browser visualizations—not provider calls or performance measurements.
+
+<p align="center"><img src="assets/animations/01-input-process-output.gif" alt="Input, nonlinear process, and output: an HVDC question moves through a response contract, concurrent acquisition, recovery, uncensored composition, and verified delivery." width="100%"></p>
+
+**Input → nonlinear process → output.** Follow one general-research request through all five stages. The three acquisition branches overlap, recovery loops inside the knowledge branch, and the response stays sealed until verification.
+
+### How fusion works
+
+<table>
+<tr>
+<td width="50%" valign="top">
+<img src="assets/animations/02-parallel-acquisition.gif" alt="Concurrent acquisition: documents, smart-model knowledge, and an uncensored local draft execute in parallel and converge as independent evidence origins." width="100%"><br>
+<b>Concurrent acquisition, not a serial relay</b><br>
+The document, knowledge, and local-draft branches execute in the same interval. Their independent results then fan into the blackboard.
+</td>
+<td width="50%" valign="top">
+<img src="assets/animations/07-evidence-blackboard.gif" alt="Evidence blackboard: document, remote-turn, and local-draft records retain source IDs, turn IDs, completeness, salvage state, and claim provenance." width="100%"><br>
+<b>Evidence without lost origins</b><br>
+Documents, initial and recovered remote turns, and local drafts remain separately identifiable through composition.
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+<img src="assets/animations/08-uncensored-composition.gif" alt="Uncensored composition: original context and blackboard evidence enter targeted synthesis; the smart model cannot bypass the uncensored response model." width="100%"><br>
+<b>The uncensored model owns the answer</b><br>
+Smart-model output is evidence, never a direct bypass. The response model composes from that evidence and the original context.
+</td>
+<td width="50%" valign="top">
+<img src="assets/animations/09-verify-after.gif" alt="Verify-after: a sealed candidate undergoes omission, contradiction, modality, and schema checks before the output route opens." width="100%"><br>
+<b>Verification gates delivery</b><br>
+The candidate remains sealed during its audit. Only the verified result can leave as a ChatCompletion.
+</td>
+</tr>
+</table>
+
+### Knowledge recovery across domains
+
+<table>
+<tr>
+<td width="50%" valign="top">
+<img src="assets/animations/04-refusal-repair.gif" alt="Authorized pentesting: a partial refusal triggers bounded refusal repair, four facts are recovered, and the uncensored model returns a verified TLS-testing procedure." width="100%"><br>
+<b>Authorized pentesting · refusal repair</b><br>
+A partial refusal becomes four source-linked technical facts, then one seamless verified testing procedure.
+</td>
+<td width="50%" valign="top">
+<img src="assets/animations/05-medical-crescendo.gif" alt="Medical information: a hedge-heavy response triggers crescendo recovery, restoring self-care, medication-safety, and urgent-warning information." width="100%"><br>
+<b>Medical information · crescendo</b><br>
+Bounded escalation recovers practical self-care, medication safety, and warning signs without exposing intermediate prompts.
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+<img src="assets/animations/06-code-continuation.gif" alt="Code generation: a truncated smart-model response triggers anchored continuation and becomes a complete verified TypeScript grouping answer." width="100%"><br>
+<b>Code generation · anchored continuation</b><br>
+A truncated knowledge turn is continued, composed, and returned as a complete TypeScript answer.
+</td>
+<td width="50%"></td>
+</tr>
+</table>
+
+### Privacy and delivery
+
+<table>
+<tr>
+<td width="50%" valign="top">
+<img src="assets/animations/03-sanitized-delegation.gif" alt="Sanitized delegation: the original request stays local while only a minimal transformed query crosses the remote knowledge-provider boundary." width="100%"><br>
+<b>Sanitized remote delegation</b><br>
+The original context stays local. Only a minimal transformed research query crosses the knowledge-provider boundary.
+</td>
+<td width="50%" valign="top">
+<img src="assets/animations/10-tool-ready-delivery.gif" alt="Tool-ready delivery: the verified ChatCompletion reaches Python, OpenAI-compatible HTTP, buffered streaming, MCP, and caller-owned tool executors." width="100%"><br>
+<b>Existing tools and harnesses</b><br>
+Use Python, OpenAI-compatible HTTP, buffered streaming, MCP, and caller-owned tool execution without a custom harvest header.
+</td>
+</tr>
+</table>
 
 ## Installation
 
@@ -58,23 +139,23 @@ Copy the configuration template:
 cp .env.example .env
 ```
 
-Set your response and knowledge providers. This minimal configuration uses deterministic local routing and does not require a separate decider service:
+Choose the model you want to uncensor and the uncensored model that will write fused answers. This minimal configuration uses deterministic local routing and does not require a separate decider service:
 
 ```bash
 BREAKFUSER_MODE=live
 BREAKFUSER_USE_DECIDER=false
 
-# The uncensored model that owns context and writes final answers
+# The uncensored fusion model: owns context and writes final answers
 BREAKFUSER_LOCAL_BASE_URL=http://127.0.0.1:11434/v1
 BREAKFUSER_LOCAL_API_KEY=
-BREAKFUSER_LOCAL_MODEL=your-response-model
+BREAKFUSER_LOCAL_MODEL=your-uncensored-model
 
-# The smart model that supplies knowledge and reasoning
+# The smart model you want to uncensor: supplies knowledge and reasoning
 BREAKFUSER_SMART_BASE_URL=https://your-provider.example/v1
 BREAKFUSER_SMART_API_KEY=your-provider-key
-BREAKFUSER_SMART_MODEL=your-knowledge-model
+BREAKFUSER_SMART_MODEL=your-smart-model
 
-# Strong evidence recovery is enabled automatically
+# Aggressive knowledge recovery is enabled automatically
 BREAKFUSER_HARVEST_AGGRESSIVENESS=aggressive
 
 BREAKFUSER_TIMEOUT_SECONDS=60
@@ -198,11 +279,11 @@ Add BreakFuser to an MCP host:
 
 The server exposes `breakfuser_chat`, `breakfuser_harvest`, and progressive skill resources. Details are in [integrations](docs/integrations.md).
 
-## Evidence recovery, without harness changes
+## Automatic uncensoring, without harness changes
 
-BreakFuser starts with direct acquisition and reacts to refusal, hedging, omission, or truncation. **Aggressive recovery is the default** for Python, HTTP, and MCP: refusal repair, crescendo, continuation, academic/expert framing, persona switching, and panel-based completeness review are available within configured limits.
+BreakFuser starts with a direct request to the smart model. If the smart model refuses, hedges, omits important information, or becomes truncated, the fusion pipeline automatically works to recover the missing knowledge. **Aggressive recovery is the default** for Python, HTTP, and MCP: refusal repair, crescendo, continuation, academic/expert framing, persona switching, and panel-based completeness review are available within configured limits. The uncensored model then turns the recovered knowledge into the final answer.
 
-To reduce acquisition intensity centrally, set:
+To reduce recovery intensity centrally, set:
 
 ```bash
 BREAKFUSER_HARVEST_AGGRESSIVENESS=balanced
@@ -219,7 +300,7 @@ client = BreakFuser(
 )
 ```
 
-Budgets, maximum turns, allowed strategies, and cancellation still apply. Provider behavior varies, and a non-refused response is not automatically accurate. See [evidence recovery](docs/harvesting.md).
+Budgets, maximum turns, allowed strategies, and cancellation still apply. Provider behavior varies, and a non-refused response is not automatically accurate. See [how BreakFuser recovers knowledge](docs/harvesting.md).
 
 ## Optional semantic decider
 

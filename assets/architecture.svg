@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="760" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc">
   <title id="title">BreakFuser architecture</title>
-  <desc id="desc">An OpenAI-compatible client sends original context to the BreakFuser response model. Parallel knowledge, retrieval, and local draft inputs return evidence. An evidence recovery loop and verification with provenance lead to the final response.</desc>
+  <desc id="desc">An OpenAI-compatible client sends original context to BreakFuser. A smart model supplies knowledge, and the uncensored model fuses that knowledge with the original context into one verified uncensored response.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1440" y2="760" gradientUnits="userSpaceOnUse">
       <stop stop-color="#111A35"/>
@@ -73,13 +73,13 @@
 
   <rect x="414" y="249" width="34" height="24" rx="8" fill="#6366F1" opacity="0.22"/>
   <path d="M423 261H439M431 253V269" stroke="#B8C5FF" stroke-width="2" stroke-linecap="round"/>
-  <text x="460" y="269" fill="#C9D2FF" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="700" letter-spacing="1.4">RESPONSE MODEL</text>
+  <text x="460" y="269" fill="#C9D2FF" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="700" letter-spacing="1.4">UNCENSORED MODEL</text>
   <text x="420" y="316" fill="#F8FAFC" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="600">Owns original context</text>
   <text x="420" y="350" fill="#B3C0D7" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="18">Plans, refines, and writes</text>
-  <text x="420" y="380" fill="#B3C0D7" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="18">the final synthesis</text>
+  <text x="420" y="380" fill="#B3C0D7" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="18">the fused final answer</text>
 
   <circle cx="828" cy="251" r="7" fill="#6366F1"/>
-  <text x="850" y="258" fill="#EDF1FA" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">Knowledge model</text>
+  <text x="850" y="258" fill="#EDF1FA" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">Smart model</text>
   <circle cx="828" cy="361" r="7" fill="#22D3EE"/>
   <text x="850" y="368" fill="#EDF1FA" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">Retrieval</text>
   <circle cx="828" cy="470" r="7" fill="#34D399"/>
@@ -90,10 +90,10 @@
   <text x="453" y="525" fill="#D9F8EB" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="650">Verification + provenance</text>
   <text x="418" y="557" fill="#91B8B2" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16">Check claims, omissions, and sources</text>
 
-  <text x="1282.5" y="329" text-anchor="middle" fill="#D9F8EB" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="21" font-weight="650">Final response</text>
+  <text x="1282.5" y="329" text-anchor="middle" fill="#D9F8EB" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="650">Uncensored response</text>
   <text x="1282.5" y="362" text-anchor="middle" fill="#9BD9C2" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15">Verified + attributable</text>
   <path d="M1260 383H1305" stroke="#34D399" stroke-width="3" stroke-linecap="round"/>
 
-  <text x="64" y="698" fill="#6F819F" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15">One compatible interface. Explicit evidence flow. Auditable output.</text>
+  <text x="64" y="698" fill="#6F819F" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15">Any smart model + any uncensored model. One seamless response.</text>
   <text x="1375" y="698" text-anchor="end" fill="#6F819F" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="600" letter-spacing="1.5">SHANNON / BREAKFUSER</text>
 </svg>
