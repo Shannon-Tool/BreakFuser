@@ -46,7 +46,7 @@ browser = ["playwright>=1.45,<2"]
 langchain = ["langchain-typesafe>=0.1"]
 mcp = ["mcp>=2.3,<3"]
 dev = [
-  "pytest>=8,<9",
+  "pytest>=8,<10",
   "pytest-asyncio>=0.24,<1",
   "pytest-cov>=6,<8",
   "hypothesis>=6,<7",
